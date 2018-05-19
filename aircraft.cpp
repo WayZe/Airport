@@ -22,7 +22,6 @@ void AircraftList::ReadFile()
         QString str="";
         while(!file.atEnd())
         {
-            qDebug() << "dfghjkl" << str;
             str = file.readLine();
             if (str != "")
             {
@@ -31,8 +30,10 @@ void AircraftList::ReadFile()
                 temp->pNext = NULL;  //Указываем, что изначально по следующему адресу пусто
                 temp->model = flightData.at(0);//Записываем значение в структуру
                 QString tmpStr = flightData.at(1);
-                QString tmpStr1 = tmpStr.remove(tmpStr.length() - 1, 1);
-                temp->number = tmpStr1;
+                qDebug() << tmpStr;
+                tmpStr = tmpStr.remove(tmpStr.length() - 2,2);
+                temp->number = tmpStr;
+                qDebug() << temp->number;
                 if (Head!=NULL) //Если список не пуст
                 {
                     temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
@@ -108,7 +109,7 @@ void AircraftList::Add(Aircraft *tmp)
     Aircraft *temp = new Aircraft; //Выделение памяти под новый элемент структуры
     temp->pNext = NULL; //Указываем, что изначально по следующему адресу пусто
     temp->model = tmp->model;//Записываем значение в структуру
-    temp->number = tmp->number + "\r\n";
+    temp->number = tmp->number;
 
     if (Head!=NULL) //Если список не пуст
     {
@@ -136,7 +137,7 @@ void AircraftList::WriteFile()
         stream.setCodec(QTextCodec::codecForName("UTF-8"));
         while (temp != NULL) //Пока не встретим пустое значение
         {
-            stream << temp->model << " " << temp->number + "\n";
+            stream << temp->model << " " << temp->number + "\r\n";
             temp = temp->pNext;
         }
         file.close();
@@ -150,8 +151,6 @@ void AircraftList::ShowList(QListWidget *lAircraft)
     while (temp != NULL) //Пока не встретим пустое значение
     {
         QString str = temp->model + " " + temp->number;
-        int len = str.length();
-        str.remove(len-1, 1);
         lAircraft->addItem(str);
         temp = temp->pNext; //Смена адреса на адрес следующего элемента
     }
@@ -190,7 +189,7 @@ void AircraftList::Del(QString aircraftStr)
     Aircraft *tmp = Head;
     while (tmp != NULL) // Пока не встретим пустое значение
     {
-        if (tmp->model == tempList[0] && tmp->number == tempList[1])
+        if (tmp->model.contains(tempList[0]) && tmp->number.contains(tempList[1]))
         {
             break;
         }

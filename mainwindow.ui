@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>961</width>
-    <height>320</height>
+    <width>977</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>1000</width>
-    <height>320</height>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,10 +29,10 @@
    <widget class="QTabWidget" name="tbMain">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
-      <width>921</width>
-      <height>271</height>
+      <width>961</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -42,135 +42,283 @@
      <attribute name="title">
       <string>Аэропорты</string>
      </attribute>
-     <widget class="QPushButton" name="btnAddAirport">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
+     <widget class="QFrame" name="frame_4">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>130</y>
-        <width>113</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Добавить</string>
-      </property>
-      <property name="shortcut">
-       <string/>
-      </property>
-      <property name="default">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="leAirportInput">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>90</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="inputMask">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnDeleteAirport">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>180</y>
-        <width>113</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Удалить</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_18">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>70</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Название</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_19">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
+        <x>30</x>
         <y>30</y>
-        <width>131</width>
-        <height>16</height>
+        <width>301</width>
+        <height>231</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Список аэропортов</string>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>45</x>
+         <y>30</y>
+         <width>221</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Добавить аэропорт&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
      </widget>
-     <widget class="QListWidget" name="lwAirportOutput">
+     <widget class="QFrame" name="frame_5">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>50</y>
-        <width>141</width>
-        <height>121</height>
+        <x>630</x>
+        <y>30</y>
+        <width>301</width>
+        <height>231</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="btnAirportSearch">
-      <property name="enabled">
-       <bool>true</bool>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>55</x>
+         <y>30</y>
+         <width>191</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Найти аэропорт&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>530</x>
+        <x>350</x>
+        <y>3</y>
+        <width>258</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0" colspan="3">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Список аэропортов</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QListWidget" name="lwAirportOutput"/>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btnDeleteAirport">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
         <y>120</y>
-        <width>113</width>
-        <height>32</height>
+        <width>189</width>
+        <height>84</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Поиск</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0" colspan="3">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>Введите название аэропорта</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QLineEdit" name="leAirportSearch">
+         <property name="inputMask">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btnAirportSearch">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Поиск</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_24">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>490</x>
-        <y>70</y>
-        <width>191</width>
-        <height>16</height>
+        <x>80</x>
+        <y>120</y>
+        <width>201</width>
+        <height>86</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Введите название аэропорта</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Название</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QLineEdit" name="leAirportInput">
+         <property name="inputMask">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btnAddAirport">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Добавить</string>
+         </property>
+         <property name="shortcut">
+          <string/>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLineEdit" name="leAirportSearch">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>90</y>
-        <width>191</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="inputMask">
-       <string/>
-      </property>
-     </widget>
+     <zorder>frame_5</zorder>
+     <zorder>frame_4</zorder>
+     <zorder>btnAddAirport</zorder>
+     <zorder>leAirportInput</zorder>
+     <zorder>btnDeleteAirport</zorder>
+     <zorder>label_18</zorder>
+     <zorder>label_19</zorder>
+     <zorder>lwAirportOutput</zorder>
+     <zorder>btnAirportSearch</zorder>
+     <zorder>label_24</zorder>
+     <zorder>leAirportSearch</zorder>
+     <zorder>horizontalSpacer</zorder>
+     <zorder>horizontalSpacer_2</zorder>
+     <zorder>horizontalSpacer_3</zorder>
+     <zorder>horizontalSpacer_4</zorder>
+     <zorder>horizontalSpacer_5</zorder>
+     <zorder>horizontalSpacer_6</zorder>
+     <zorder>horizontalSpacer_11</zorder>
+     <zorder>horizontalSpacer_12</zorder>
+     <zorder></zorder>
+     <zorder></zorder>
     </widget>
     <widget class="QWidget" name="tFlight">
      <attribute name="title">
@@ -180,8 +328,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
-        <width>113</width>
+        <y>90</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -199,8 +347,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>190</y>
-        <width>113</width>
+        <y>260</y>
+        <width>103</width>
         <height>32</height>
        </rect>
       </property>
@@ -215,8 +363,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>70</y>
-        <width>113</width>
+        <y>150</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -225,45 +373,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>120</y>
-        <width>113</width>
+        <y>200</y>
+        <width>108</width>
         <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnDeleteFlight">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>190</y>
-        <width>113</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Удалить</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="lwFlightFromName">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>50</y>
-        <width>91</width>
-        <height>161</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="lwFlightToName">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>50</y>
-        <width>91</width>
-        <height>161</height>
        </rect>
       </property>
      </widget>
@@ -271,8 +383,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>0</y>
-        <width>60</width>
+        <y>70</y>
+        <width>43</width>
         <height>16</height>
        </rect>
       </property>
@@ -284,8 +396,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
-        <width>111</width>
+        <y>120</y>
+        <width>108</width>
         <height>16</height>
        </rect>
       </property>
@@ -297,8 +409,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>50</y>
-        <width>111</width>
+        <y>130</y>
+        <width>82</width>
         <height>16</height>
        </rect>
       </property>
@@ -310,8 +422,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
-        <width>111</width>
+        <y>180</y>
+        <width>74</width>
         <height>16</height>
        </rect>
       </property>
@@ -323,8 +435,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>90</y>
-        <width>111</width>
+        <y>170</y>
+        <width>108</width>
         <height>16</height>
        </rect>
       </property>
@@ -332,139 +444,12 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Название пункта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>10</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Выберите</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>20</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>пункт</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>30</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>отправления</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>30</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>назначения</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_15">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>10</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Выберите</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_16">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>20</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>пункт</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_17">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>30</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Список рейсов</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="lwFlightAircraft">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>50</y>
-        <width>91</width>
-        <height>161</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>20</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Выберите</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_22">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>30</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>судно</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="leFlightAircraft">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>160</y>
-        <width>113</width>
+        <y>240</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -473,8 +458,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>140</y>
-        <width>111</width>
+        <y>220</y>
+        <width>84</width>
         <height>16</height>
        </rect>
       </property>
@@ -482,22 +467,12 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер судна&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="lwFlightOutput">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>50</y>
-        <width>241</width>
-        <height>131</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="leFlightAircraftSearch">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>170</y>
-        <width>113</width>
+        <x>820</x>
+        <y>235</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -508,9 +483,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>200</y>
-        <width>113</width>
+        <x>830</x>
+        <y>260</y>
+        <width>82</width>
         <height>32</height>
        </rect>
       </property>
@@ -524,9 +499,9 @@
      <widget class="QLabel" name="label_25">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>110</y>
-        <width>111</width>
+        <x>820</x>
+        <y>177</y>
+        <width>74</width>
         <height>16</height>
        </rect>
       </property>
@@ -537,9 +512,9 @@
      <widget class="QLineEdit" name="leFlightToNameSearch">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>130</y>
-        <width>113</width>
+        <x>820</x>
+        <y>197</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -547,9 +522,9 @@
      <widget class="QLineEdit" name="leFlightFromNameSearch">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>80</y>
-        <width>113</width>
+        <x>820</x>
+        <y>147</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -557,9 +532,9 @@
      <widget class="QLineEdit" name="leFlightNumberSearch">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>30</y>
-        <width>113</width>
+        <x>820</x>
+        <y>90</y>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -573,9 +548,9 @@
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>60</y>
-        <width>111</width>
+        <x>820</x>
+        <y>127</y>
+        <width>82</width>
         <height>16</height>
        </rect>
       </property>
@@ -586,9 +561,9 @@
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>10</y>
-        <width>60</width>
+        <x>820</x>
+        <y>70</y>
+        <width>43</width>
         <height>16</height>
        </rect>
       </property>
@@ -599,9 +574,9 @@
      <widget class="QLabel" name="label_28">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>150</y>
-        <width>111</width>
+        <x>820</x>
+        <y>217</y>
+        <width>84</width>
         <height>16</height>
        </rect>
       </property>
@@ -612,9 +587,9 @@
      <widget class="QLabel" name="label_29">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>50</y>
-        <width>111</width>
+        <x>820</x>
+        <y>117</y>
+        <width>108</width>
         <height>16</height>
        </rect>
       </property>
@@ -625,9 +600,9 @@
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>100</y>
-        <width>111</width>
+        <x>820</x>
+        <y>167</y>
+        <width>108</width>
         <height>16</height>
        </rect>
       </property>
@@ -635,180 +610,515 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Название пункта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>10</y>
+        <width>651</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>0</y>
+         <width>251</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Информация о рейсах&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>61</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Ввод&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>10</y>
+        <width>131</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>71</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Поиск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>70</y>
+        <width>201</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="3" column="1">
+        <widget class="QPushButton" name="btnDeleteFlight">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="horizontalSpacer_25">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>Список рейсов</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QListWidget" name="lwFlightOutput"/>
+       </item>
+       <item row="3" column="2">
+        <spacer name="horizontalSpacer_26">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>90</y>
+        <width>431</width>
+        <height>211</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QListWidget" name="lwFlightFromName"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_27">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QListWidget" name="lwFlightToName"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_28">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QListWidget" name="lwFlightAircraft"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>70</y>
+        <width>441</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Пункт отправления:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Пункт назначения:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>Судно:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <zorder>frame_2</zorder>
+     <zorder>frame_3</zorder>
+     <zorder>frame</zorder>
+     <zorder>leFlightNumberInput</zorder>
+     <zorder>btnAddFlight</zorder>
+     <zorder>leFlightFromName</zorder>
+     <zorder>leFlightToName</zorder>
+     <zorder>btnDeleteFlight</zorder>
+     <zorder>lwFlightFromName</zorder>
+     <zorder>lwFlightToName</zorder>
+     <zorder>label_6</zorder>
+     <zorder>label_7</zorder>
+     <zorder>label_8</zorder>
+     <zorder>label_9</zorder>
+     <zorder>label_10</zorder>
+     <zorder>label_13</zorder>
+     <zorder>label_16</zorder>
+     <zorder>label_17</zorder>
+     <zorder>lwFlightAircraft</zorder>
+     <zorder>label_22</zorder>
+     <zorder>leFlightAircraft</zorder>
+     <zorder>label_21</zorder>
+     <zorder>lwFlightOutput</zorder>
+     <zorder>leFlightAircraftSearch</zorder>
+     <zorder>btnAddFlightSearch</zorder>
+     <zorder>label_25</zorder>
+     <zorder>leFlightToNameSearch</zorder>
+     <zorder>leFlightFromNameSearch</zorder>
+     <zorder>leFlightNumberSearch</zorder>
+     <zorder>label_26</zorder>
+     <zorder>label_27</zorder>
+     <zorder>label_28</zorder>
+     <zorder>label_29</zorder>
+     <zorder>label_30</zorder>
+     <zorder>horizontalSpacer_25</zorder>
+     <zorder>horizontalSpacer_26</zorder>
+     <zorder>horizontalSpacer_27</zorder>
+     <zorder></zorder>
+     <zorder></zorder>
+     <zorder></zorder>
+     <zorder></zorder>
+     <zorder>horizontalSpacer_27</zorder>
+     <zorder>horizontalSpacer_28</zorder>
+     <zorder>horizontalSpacer_29</zorder>
+     <zorder>horizontalSpacer_30</zorder>
+     <zorder>horizontalSpacer_31</zorder>
     </widget>
     <widget class="QWidget" name="tAircraft">
      <attribute name="title">
       <string>Воздушные суда</string>
      </attribute>
-     <widget class="QLineEdit" name="leAircraftModel">
+     <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>60</y>
-        <width>113</width>
-        <height>21</height>
+        <x>30</x>
+        <y>30</y>
+        <width>301</width>
+        <height>231</height>
        </rect>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>55</x>
+         <y>30</y>
+         <width>181</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Добавить судно&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
      </widget>
-     <widget class="QLineEdit" name="leAircraftNumber">
+     <widget class="QFrame" name="frame_7">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>630</x>
+        <y>30</y>
+        <width>301</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>30</y>
+         <width>141</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Найти судно&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>717</x>
         <y>110</y>
-        <width>113</width>
-        <height>21</height>
+        <width>137</width>
+        <height>137</height>
        </rect>
       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>Модель</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leAircraftModelSearch"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Номер</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leAircraftNumberSearch"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAircraftSearch">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Поиск</string>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="btnAddAircraft">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>150</y>
-        <width>113</width>
-        <height>32</height>
+        <x>350</x>
+        <y>3</y>
+        <width>258</width>
+        <height>301</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Добавить</string>
-      </property>
-      <property name="default">
-       <bool>true</bool>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Список  судов</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="QListWidget" name="lwAircraftOutput"/>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer_19">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btnDeleteAircraft">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_24">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="btnDeleteAircraft">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>170</y>
-        <width>113</width>
-        <height>32</height>
+        <x>103</x>
+        <y>110</y>
+        <width>137</width>
+        <height>137</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Удалить</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Модель</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leAircraftModel"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Номер</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leAircraftNumber"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAddAircraft">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Добавить</string>
+         </property>
+         <property name="default">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>40</y>
-        <width>60</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Модель</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>90</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Номер</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Список  судов</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="lwAircraftOutput">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>221</width>
-        <height>131</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnAircraftSearch">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>140</y>
-        <width>113</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Поиск</string>
-      </property>
-      <property name="default">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>80</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Номер</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="leAircraftModelSearch">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>50</y>
-        <width>113</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="leAircraftNumberSearch">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>100</y>
-        <width>113</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_23">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>30</y>
-        <width>60</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Модель</string>
-      </property>
-     </widget>
+     <zorder>frame_6</zorder>
+     <zorder>leAircraftModel</zorder>
+     <zorder>leAircraftNumber</zorder>
+     <zorder>btnAddAircraft</zorder>
+     <zorder>btnDeleteAircraft</zorder>
+     <zorder>label_2</zorder>
+     <zorder>label_3</zorder>
+     <zorder>label_5</zorder>
+     <zorder>lwAircraftOutput</zorder>
+     <zorder>btnAircraftSearch</zorder>
+     <zorder>label_4</zorder>
+     <zorder>leAircraftModelSearch</zorder>
+     <zorder>leAircraftNumberSearch</zorder>
+     <zorder>label_23</zorder>
+     <zorder>horizontalSpacer_19</zorder>
+     <zorder>horizontalSpacer_24</zorder>
+     <zorder>frame_7</zorder>
     </widget>
    </widget>
   </widget>
@@ -817,7 +1127,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>961</width>
+     <width>977</width>
      <height>22</height>
     </rect>
    </property>
@@ -836,7 +1146,6 @@
   <tabstop>lwFlightToName</tabstop>
   <tabstop>lwFlightAircraft</tabstop>
   <tabstop>btnAddFlight</tabstop>
-  <tabstop>lwFlightOutput</tabstop>
   <tabstop>btnDeleteFlight</tabstop>
   <tabstop>leFlightFromName</tabstop>
   <tabstop>leFlightToName</tabstop>

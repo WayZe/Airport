@@ -68,6 +68,7 @@ void MainWindow::on_btnAddAirport_clicked()
         airportList.ShowList(ui->lwFlightFromName);
         airportList.ShowList(ui->lwFlightToName);
         ui->leAirportInput->setText("");
+        ui->leAirportInput->setFocus();
     }
     else
     {
@@ -259,8 +260,12 @@ void MainWindow::on_btnDeleteAircraft_clicked()
     aircraftList.WriteFile();
     delete ui->lwAircraftOutput->takeItem(ui->lwAircraftOutput->currentRow());
     aircraftList.ShowList(ui->lwFlightAircraft);
+
     if (aircraftList.getLength() == 0)
         ui->btnDeleteAircraft->setDisabled(true);
+
+    if (ui->lwAircraftOutput->count() == 0)
+        ui->btnDeleteAircraft->setEnabled(false);
 }
 
 void MainWindow::on_lwAirportOutput_itemClicked(QListWidgetItem *item)
@@ -402,3 +407,4 @@ void MainWindow::on_btnAircraftSearch_pressed()
 {
     ui->leAircraftModelSearch->setFocus();
 }
+
