@@ -4,15 +4,17 @@
 #include "QTextCodec"
 #include "QCoreApplication"
 
+// Установка пути к файлу рейсов
 void FlightList::SetPath()
 {
-    flightFilePath = //"/Users/andreymakarov/Langs/Qt/build-Airport-Desktop_Qt_5_10_1_clang_64bit-Debug/flights.txt";
-            QCoreApplication::applicationDirPath() + "//flights.txt";
+    flightFilePath = QCoreApplication::applicationDirPath() + "//flights.txt";
 }
 
+// Чтение файла с рейсами
 void FlightList::ReadFile()
 {
     QFile file(flightFilePath);
+    // Если файл существует и открыт для чтения
     if ((file.exists()) && (file.open(QIODevice::ReadOnly)))
     {
         QString str="";
@@ -21,28 +23,30 @@ void FlightList::ReadFile()
             str = file.readLine();
             if(str != "")
             {
+                // Создание структуры рейса
                 QStringList flightData = str.split(' ');
-                Flight *temp = new Flight; //Выделение памяти под новый элемент структуры
-                temp->pNext = NULL;  //Указываем, что изначально по следующему адресу пусто
-                temp->number = flightData.at(0);//Записываем значение в структуру
+                Flight *temp = new Flight;
+                temp->pNext = NULL;
+                temp->number = flightData.at(0);
                 temp->fromName = flightData.at(1);
                 temp->toName = flightData.at(2);
-                QString tmpStr = flightData[3];
-                QString tmpStr1 = tmpStr.remove(tmpStr.length() - 2, 2);
-                qDebug() << tmpStr1;
-                temp->aircraftNumber = tmpStr1;
+                QString tmpStr = flightData.at(3);
+                tmpStr = tmpStr.remove(tmpStr.length() - 2, 2);
+                temp->aircraftNumber = tmpStr;
 
-                if (Head!=NULL) //Если список не пуст
+                // Если список не пуст
+                if (Head!=NULL)
                 {
-                    temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
-                    Tail -> pNext = temp; //Указываем адрес следующего за хвостом элемента
-                    Tail = temp; //Меняем адрес хвоста
+                    temp -> pPrev = Tail;
+                    Tail -> pNext = temp;
+                    Tail = temp;
                     length++;
                 }
-                else //Если список пустой
+                // Если список пуст
+                else
                 {
-                    temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-                    Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
+                    temp -> pPrev = NULL;
+                    Head = Tail = temp;
                     length++;
                 }
             }
@@ -51,33 +55,22 @@ void FlightList::ReadFile()
     }
 }
 
-FlightList::~FlightList() //Деструктор
+// Деструктор
+FlightList::~FlightList()
 {
-    while (Head) //Пока по адресу на начало списка что-то есть
+    while (Head)
     {
-        Tail = Head->pNext; //Резервная копия адреса следующего звена списка
-        delete Head; //Очистка памяти от первого звена
-        Head = Tail; //Смена адреса начала на адрес следующего элемента
+        Tail = Head->pNext;
+        delete Head;
+        Head = Tail;
     }
     length = 0;
 }
 
-
-void FlightList::Clear() //Деструктор
-{
-    while (Head) //Пока по адресу на начало списка что-то есть
-    {
-        Tail = Head->pNext; //Резервная копия адреса следующего звена списка
-        delete Head; //Очистка памяти от первого звена
-        Head = Tail; //Смена адреса начала на адрес следующего элемента
-    }
-    length = 0;
-}
-
+// Проверка наличия добавляемого элемента в списке
 bool FlightList::IsAvailable(Flight *tmp)
 {
-    Flight *temp = Head; //Выделение памяти под новый элемент структуры
-
+    Flight *temp = Head;
     temp = Head;
 
     while (temp != NULL) // Пока не встретим пустое значение

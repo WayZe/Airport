@@ -38,7 +38,6 @@ public:
     void WriteFile();
     void ReadFile();
     void ShowList(QListWidget*);
-    void Clear();
     void Del(int);
     int getLength();
     void SetPath();
