@@ -24,7 +24,7 @@ void AirportList::ReadFile()
                 Airport *temp = new Airport; //Выделение памяти под новый элемент структуры
                 temp->pNext = NULL;  //Указываем, что изначально по следующему адресу пусто
                 temp->name = str.remove(str.size() - 2,2);//Записываем значение в структуру
-
+                qDebug() << temp->name;
                 // Если список не пуст
                 if (Head!=NULL)
                 {
@@ -43,7 +43,6 @@ void AirportList::ReadFile()
             }
         }
         file.close();
-
     }
 }
 
@@ -54,10 +53,6 @@ void AirportList::ShowSearchList(QListWidget *lAirport, QString airportName)
     while (temp != NULL) // Пока не встретим пустое значение
     {
         QString str = temp->name;
-
-        int len = str.length();
-        str.remove(len-2, 2);
-        qDebug() << str;
         if(str.contains(airportName))
         {
             lAirport->addItem(str);
@@ -96,7 +91,7 @@ void AirportList::Add(QString name)
     Airport *temp = new Airport;
 
     temp->pNext = NULL; //Указываем, что изначально по следующему адресу пусто
-    temp->name = name + "\r\n";//Записываем значение в структуру
+    temp->name = name;//Записываем значение в структуру
 
     if (Head!=NULL) //Если список не пуст
     {
@@ -139,7 +134,7 @@ void AirportList::WriteFile()
         // Пока не встретим пустое значение
         while (temp != NULL)
         {
-            stream << temp->name;
+            stream << temp->name + "\r\n";
             temp = temp->pNext;
         }
         file.close();
@@ -163,8 +158,6 @@ void AirportList::ShowList(QListWidget *lAirport)
     while (temp != NULL) // Пока не встретим пустое значение
     {
         QString str = temp->name;
-        int len = str.length();
-        str.remove(len-1, 1);
         lAirport->addItem(str);
         temp = temp->pNext; // Смена адреса на адрес следующего элемента
     }
@@ -177,10 +170,11 @@ void AirportList::Del(QString airportName)
     Airport *tmp = Head;
     while (tmp != NULL) // Пока не встретим пустое значение
     {
-        QString str = tmp->name;
-        int len = str.length();
-        str.remove(len-2, 2);
-        if (str == airportName)
+//        QString str = tmp->name;
+//        int len = str.length();
+//        str.remove(len-2, 2);
+        qDebug() << tmp->name + " " + airportName;
+        if (tmp->name == airportName)
         {
             break;
         }
