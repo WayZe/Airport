@@ -173,7 +173,7 @@ void AircraftList::ShowSearchList(QListWidget *Aircrafts, Aircraft aircraft)
     Aircrafts->clear();
     while (tmp != NULL) // Пока не встретим пустое значение
     {
-        if (tmp->model.contains(aircraft.model) && tmp->number.contains(aircraft.number))
+        if (tmp->model.toLower().contains(aircraft.model.toLower()) && tmp->number.toLower().contains(aircraft.number.toLower()))
         {
             Aircrafts->addItem(tmp->model + " " + tmp->number);
         }

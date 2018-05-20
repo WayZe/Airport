@@ -53,7 +53,7 @@ void AirportList::ShowSearchList(QListWidget *lAirport, QString airportName)
     while (temp != NULL) // Пока не встретим пустое значение
     {
         QString str = temp->name;
-        if(str.contains(airportName))
+        if(str.toLower().contains(airportName.toLower()))
         {
             lAirport->addItem(str);
         }
@@ -77,7 +77,7 @@ bool AirportList::IsAvailable(QString name)
 
     while (temp != NULL) // Пока не встретим пустое значение
     {
-        if (temp->name == name + "\r\n")//Выводим каждое считанное значение на экран
+        if (temp->name == name)//Выводим каждое считанное значение на экран
         {
             return false;
         }

@@ -39,7 +39,7 @@ private slots:
 
     void on_lwFlightOutput_itemClicked(QListWidgetItem *item);
 
-    void on_lwAirportOutput_itemClicked(QListWidgetItem *item);
+    void on_lwAirportOutput_itemClicked();
 
     void on_lwAircraftOutput_itemClicked(QListWidgetItem *item);
 
@@ -71,15 +71,7 @@ private slots:
 
     void on_leFlightAircraft_returnPressed();
 
-    void on_tbMain_currentChanged(int index);
-
     void on_tbMain_tabBarClicked(int index);
-
-    void on_lwFlightFromName_itemActivated(QListWidgetItem *item);
-
-    void on_lwFlightToName_itemActivated(QListWidgetItem *item);
-
-    void on_lwFlightAircraft_itemActivated(QListWidgetItem *item);
 
     void on_btnAirportSearch_clicked();
 
@@ -93,13 +85,13 @@ private slots:
 
     void on_leFlightAircraftSearch_returnPressed();
 
-    void on_btnAddFlightSearch_pressed();
-
     void on_btnAircraftSearch_clicked();
 
-    void on_btnAddAircraft_pressed();
+    void on_leAirportSearch_returnPressed();
 
-    void on_btnAircraftSearch_pressed();
+    void on_leAircraftModelSearch_returnPressed();
+
+    void on_leAircraftNumberSearch_returnPressed();
 
 private:
     Ui::MainWindow *ui;

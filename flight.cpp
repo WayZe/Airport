@@ -18,7 +18,6 @@ void FlightList::ReadFile()
         QString str="";
         while(!file.atEnd())
         {
-            qDebug() << "111";
             str = file.readLine();
             if(str != "")
             {
@@ -29,7 +28,8 @@ void FlightList::ReadFile()
                 temp->fromName = flightData.at(1);
                 temp->toName = flightData.at(2);
                 QString tmpStr = flightData[3];
-                QString tmpStr1 = tmpStr.remove(tmpStr.length() - 1, 1);
+                QString tmpStr1 = tmpStr.remove(tmpStr.length() - 2, 2);
+                qDebug() << tmpStr1;
                 temp->aircraftNumber = tmpStr1;
 
                 if (Head!=NULL) //Если список не пуст
@@ -118,16 +118,6 @@ void FlightList::Add(Flight *flight)
 
 void FlightList::Show(QTextEdit* outTextEdit)
 {
-//    //ВЫВОДИМ СПИСОК С КОНЦА
-//    //Временный указатель на адрес последнего элемента
-//    while (temp!=NULL) //Пока не встретится пустое значение
-//    {
-//        qDebug() << temp->name << " "; //Выводить значение на экран
-//        temp=temp->pPrev; //Указываем, что нужен адрес предыдущего элемента
-//    }
-//    cout<<"\n";
-
-    //Airport *temp = Tail;
     QString str = "";
     //ВЫВОДИМ СПИСОК С НАЧАЛА
     Flight *temp = Head; //Временно указываем на адрес первого элемента
@@ -150,8 +140,8 @@ void FlightList::WriteFile()
         stream.setCodec(QTextCodec::codecForName("UTF-8"));
         while (temp != NULL) //Пока не встретим пустое значение
         {
-            stream << temp->number << " " << temp->fromName << " " << temp->toName << " " << temp->aircraftNumber + "\n";
-            qDebug() << temp->number + temp->fromName + temp->toName + temp->aircraftNumber + "\n";
+            stream << temp->number << " " << temp->fromName << " " << temp->toName << " " << temp->aircraftNumber + "\r\n";
+            qDebug() << temp->number + temp->fromName + temp->toName + temp->aircraftNumber;
             temp = temp->pNext;
         }
         file.close();
@@ -176,7 +166,10 @@ void FlightList::ShowSearchList(QListWidget *Flights, Flight flight)
     Flights->clear();
     while (tmp != NULL) // Пока не встретим пустое значение
     {
-        if (tmp->number.contains(flight.number) && tmp->fromName.contains(flight.fromName) && tmp->toName.contains(flight.toName) && tmp->aircraftNumber.contains(flight.aircraftNumber))
+        if (tmp->number.toLower().contains(flight.number.toLower()) &&
+            tmp->fromName.toLower().contains(flight.fromName.toLower()) &&
+            tmp->toName.toLower().contains(flight.toName.toLower()) &&
+            tmp->aircraftNumber.toLower().contains(flight.aircraftNumber.toLower()))
         {
             Flights->addItem(tmp->number + " " + tmp->fromName + " " + tmp->toName + " " + tmp->aircraftNumber);
         }
