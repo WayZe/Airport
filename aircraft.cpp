@@ -63,7 +63,8 @@ bool AircraftList::IsAvailable(Aircraft *tmp)
     temp = Head;
     while (temp != NULL)
     {
-        if (temp->number == tmp->number)
+        qDebug() << temp->number + " " + tmp->number;
+        if (temp->number.toLower() == tmp->number.toLower())
         {
             return false;
         }

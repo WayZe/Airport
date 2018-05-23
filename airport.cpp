@@ -73,7 +73,7 @@ bool AirportList::IsAvailable(QString name)
     Airport *temp = Head;
     while (temp != NULL)
     {
-        if (temp->name == name)
+        if (temp->name.toLower() == name.toLower())
         {
             return false;
         }

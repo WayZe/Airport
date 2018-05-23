@@ -65,7 +65,7 @@ void MainWindow::on_btnAddAirport_clicked()
     }
     else
     {
-        QMessageBox::warning(this, "Некорректное название аэропорта", "Введите другое название");
+        QMessageBox::warning(this, "Некорректное название аэропорта", "Аэропорт с введенным названием уже существует в списке аэропортов. Введите другое название аэропорта.");
     }
 
     ui->leAirportInput->setFocus();
@@ -167,7 +167,7 @@ void MainWindow::on_btnAddFlight_clicked()
     }
     else
     {
-        QMessageBox::warning(this, "Некорректный номер", "Введите другой номер рейса.");
+        QMessageBox::warning(this, "Некорректный номер", "Рейс с введенным номером уже существует в списке рейсов. Введите другой номер рейса.");
     }
 
     ui->leFlightNumberInput->setFocus();
@@ -358,7 +358,7 @@ void MainWindow::on_btnAddAircraft_clicked()
     }
     else
     {
-        QMessageBox::warning(this, "Некорректный номер", "Введите другой номер");
+        QMessageBox::warning(this, "Некорректный номер", "Судно с введенным номером уже имеется в списке судов. Введите другой номер судна.");
     }
 }
 
