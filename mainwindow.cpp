@@ -1,10 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "airport.h"
-#include "flight.h"
-#include "aircraft.h"
-#include <QMessageBox>
-#include <QGraphicsDropShadowEffect>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

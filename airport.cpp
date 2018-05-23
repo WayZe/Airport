@@ -1,13 +1,9 @@
 #include "airport.h"
-#include "iostream"
-#include "QListWidget"
-#include "QTextCodec"
-#include "QCoreApplication"
 
+// Установка пути для аэропортов
 void AirportList::SetPath()
 {
-    airportFilePath = //"/Users/andreymakarov/Langs/Qt/build-Airport-Desktop_Qt_5_10_1_clang_64bit-Debug/airports.txt";
-            QCoreApplication::applicationDirPath() + "//airports.txt";
+    airportFilePath = QCoreApplication::applicationDirPath() + "//airports.txt";
 }
 
 void AirportList::ReadFile()
@@ -21,107 +17,95 @@ void AirportList::ReadFile()
             str = file.readLine();
             if (str != "")
             {
-                Airport *temp = new Airport; //Выделение памяти под новый элемент структуры
-                temp->pNext = NULL;  //Указываем, что изначально по следующему адресу пусто
-                temp->name = str.remove(str.size() - 2,2);//Записываем значение в структуру
-                qDebug() << temp->name;
+                Airport *temp = new Airport;
+                temp->pNext = NULL;
+                temp->name = str.remove(str.size() - 2,2);
                 // Если список не пуст
                 if (Head!=NULL)
                 {
-                    temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
-                    Tail -> pNext = temp; //Указываем адрес следующего за хвостом элемента
-                    Tail = temp; //Меняем адрес хвоста
-                    length++; // Увелич
+                    temp -> pPrev = Tail;
+                    Tail -> pNext = temp;
+                    Tail = temp;
                 }
-                // Если список пустой
+                // Если список пуст
                 else
                 {
-                    temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-                    Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
-                    length++;
+                    temp -> pPrev = NULL;
+                    Head = Tail = temp;
                 }
+                length++;
             }
         }
         file.close();
     }
 }
 
+// Вывод списка на экран, соответсвующего заданным параметрам поиска
 void AirportList::ShowSearchList(QListWidget *lAirport, QString airportName)
 {
     Airport *temp = Head;
     lAirport->clear();
-    while (temp != NULL) // Пока не встретим пустое значение
+    while (temp != NULL)
     {
         QString str = temp->name;
         if(str.toLower().contains(airportName.toLower()))
         {
             lAirport->addItem(str);
         }
-        temp = temp->pNext; // Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
 }
 
-AirportList::~AirportList() //Деструктор
+// Деструктор
+AirportList::~AirportList()
 {
-    while (Head) //Пока по адресу на начало списка что-то есть
+    while (Head)
     {
-        Tail = Head->pNext; //Резервная копия адреса следующего звена списка
-        delete Head; //Очистка памяти от первого звена
-        Head = Tail; //Смена адреса начала на адрес следующего элемента
+        Tail = Head->pNext;
+        delete Head;
+        Head = Tail;
     }
 }
 
+// Проверка наличия добавляемого элемента в списке
 bool AirportList::IsAvailable(QString name)
 {
-    Airport *temp = Head; //Выделение памяти под новый элемент структуры
-
-    while (temp != NULL) // Пока не встретим пустое значение
+    Airport *temp = Head;
+    while (temp != NULL)
     {
-        if (temp->name == name)//Выводим каждое считанное значение на экран
+        if (temp->name == name)
         {
             return false;
         }
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
     return true;
 }
-
+// Добавление элемента в список
 void AirportList::Add(QString name)
 {
     Airport *temp = new Airport;
 
-    temp->pNext = NULL; //Указываем, что изначально по следующему адресу пусто
-    temp->name = name;//Записываем значение в структуру
+    temp->pNext = NULL;
+    temp->name = name;
 
-    if (Head!=NULL) //Если список не пуст
+    // Если список не пуст
+    if (Head!=NULL)
     {
-        temp -> pPrev = Tail; // Указываем адрес на предыдущий элемент в соотв. поле
-        Tail -> pNext = temp; // Указываем адрес следующего за хвостом элемента
-        Tail = temp; // Меняем адрес хвоста
-        length++; // Увеличиваем длину списка
+        temp -> pPrev = Tail;
+        Tail -> pNext = temp;
+        Tail = temp;
     }
-    else //Если список пустой
+    // Если список пуст
+    else
     {
-        temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-        Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
-        length++; // Увеличиваем длину списка
+        temp -> pPrev = NULL;
+        Head = Tail = temp;
     }
+    length++;
 }
 
-void AirportList::Show(QTextEdit* outTextEdit)
-{
-    // Составление выходной строки
-    QString str = "";
-    Airport *temp = Head; // Временно указываем на адрес первого элемента
-    while (temp != NULL) // Пока не встретим пустое значение
-    {
-        str += temp->name; //Выводим каждое считанное значение на экран
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
-    }
-    // Вывод строки на экран
-    outTextEdit->setText(str);
-}
-
+// Вывод списка в файл
 void AirportList::WriteFile()
 {
     QFile file(airportFilePath);
@@ -141,94 +125,75 @@ void AirportList::WriteFile()
     }
 }
 
-void AirportList::Clear() //Деструктор
-{
-    while (Head) // Пока по адресу на начало списка что-то есть
-    {
-        Tail = Head->pNext; // Резервная копия адреса следующего звена списка
-        delete Head; // Очистка памяти от первого звена
-        Head = Tail; // Смена адреса начала на адрес следующего элемента
-    }
-}
-
+// Вывод списка на экран
 void AirportList::ShowList(QListWidget *lAirport)
 {
     Airport *temp = Head;
     lAirport->clear();
-    while (temp != NULL) // Пока не встретим пустое значение
+    while (temp != NULL)
     {
         QString str = temp->name;
         lAirport->addItem(str);
-        temp = temp->pNext; // Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
 }
 
-/*ФУНКЦИЯ УДАЛЕНИЯ КОНКРЕТНОГО ЭЛЕМЕНТА ДВУСВЯЗНОГО СПИСКА*/
+// Удаление элемента из списка
 void AirportList::Del(QString airportName)
 {
+    // Вычисление индекса удаляемого элемента
     int x = 1;
     Airport *tmp = Head;
-    while (tmp != NULL) // Пока не встретим пустое значение
+    while (tmp != NULL)
     {
-//        QString str = tmp->name;
-//        int len = str.length();
-//        str.remove(len-2, 2);
-        qDebug() << tmp->name + " " + airportName;
         if (tmp->name == airportName)
         {
             break;
         }
         x++;
-        tmp = tmp->pNext; // Смена адреса на адрес следующего элемента
+        tmp = tmp->pNext;
     }
 
-    //Если удаляем первый элемент, то могут быть такие варианты
-    //В списке есть только первый, в списке есть несколько элементов
-    //Поэтому разбиваем логику выполнения
+    // Если элемент первый и не единственный
     if ((x==1) and (Head->pNext))
-    { //Если удаляем первый, но есть и другие, то
-        Airport *temp=Head;	//Указываем, что нам нужно начало списка
-        Head=Head->pNext;	//Сдвигаем начало на следующий за началом элемент
-        Head->pPrev=NULL;	//Делаем так, чтоб предыдущий началу элемент был пустым
-        delete temp;		//Удаляем удаляемое начало
-        length--;		//Обязательно уменьшаем счетчик
-        return ;		//И выходим из функции
+    {
+        Airport *temp=Head;
+        Head=Head->pNext;
+        Head->pPrev=NULL;
+        delete temp;
+        length--;
+        return ;
     }
+    // Если элемент первый и единственный
     else if ((x==1) and (Head==Tail))
-    { //Если удаляем первый, но в списке только 1 элемент
-        Head->pNext=NULL;	//обнуляем все что нужно
+    {
+        Head->pNext=NULL;
         Head=NULL;
-        delete Head;		//Удаляем указатель на начало
-        length=0;		//Обязательно обозначаем, что в списке ноль элементов
-        return;			//и выходим из функции
+        delete Head;
+        length=0;
+        return;
     }
 
-    //Также может быть, что удаляемый элемент является последним элементом списка
+    // Удаление последнего элемента
     if (x == length)
     {
-        Airport *temp=Tail;	//Указываем, что нам нужен хвост
-        Tail=Tail->pPrev;	//Отодвигаем хвост немного назад
-        Tail->pNext=NULL;	//Обозначаем, что впереди за хвостом пусто
-        delete temp;	//Очищаем память от бывшего хвоста
-        length--;		//Обязательно уменьшаем счетчик элементов
-        return;		//И выходим из функции
+        Airport *temp=Tail;
+        Tail=Tail->pPrev;
+        Tail->pNext=NULL;
+        delete temp;
+        length--;
+        return;
     }
 
-    //Если же удаляемый элемент лежит где-то в середине списка, то тогда его можно удалить
-    Airport *temp=Head,*temp2; //temp-Удаляемый элемент, temp2 нужен, чтобы не потерять данные
-
-        //cout<<count_<<"\n";
+    // Удаление элемента из середины
+    Airport *temp=Head,*temp2;
     for (int i=0;i<x-1;i++)
-        temp=temp->pNext;  //Идем к адресу удаляемого элемента
-
-    temp2=temp;	//Временно запоминаем адрес удаляемого элемента
-    temp2->pPrev->pNext=temp->pNext;	//Записываем данные, что следующий за перед сейчас удаляемым элементом - это следующий от удаляемого
-    temp2->pNext->pPrev=temp->pPrev; //а предыдущий для следующего - это предыдущий для удаляемого
-    delete temp; //теперь смело можно освободить память, удалив адрес на начало удаляемого элемента
-    length--; //Обязательно уменьшаем число элементов в списке.
-}
-
-int AirportList::getLength()
-{
-    return length;
+    {
+        temp=temp->pNext;
+    }
+    temp2=temp;
+    temp2->pPrev->pNext=temp->pNext;
+    temp2->pNext->pPrev=temp->pPrev;
+    delete temp;
+    length--;
 }

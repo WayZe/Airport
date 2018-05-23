@@ -5,6 +5,9 @@
 #include "airport.h"
 #include "flight.h"
 #include "aircraft.h"
+#include "airport.h"
+#include <QMessageBox>
+#include <QGraphicsDropShadowEffect>
 
 namespace Ui {
 class MainWindow;

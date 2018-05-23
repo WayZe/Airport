@@ -1,8 +1,4 @@
 #include "flight.h"
-#include "airport.h"
-#include "QListWidget"
-#include "QTextCodec"
-#include "QCoreApplication"
 
 // Установка пути к файлу рейсов
 void FlightList::SetPath()
@@ -40,15 +36,14 @@ void FlightList::ReadFile()
                     temp -> pPrev = Tail;
                     Tail -> pNext = temp;
                     Tail = temp;
-                    length++;
                 }
                 // Если список пуст
                 else
                 {
                     temp -> pPrev = NULL;
                     Head = Tail = temp;
-                    length++;
                 }
+                length++;
             }
         }
         file.close();
@@ -85,79 +80,71 @@ bool FlightList::IsAvailable(Flight *tmp)
     return true;
 }
 
+// Добавление рейса в список
 void FlightList::Add(Flight *flight)
 {
-    Flight *temp = new Flight; //Выделение памяти под новый элемент структуры
-    temp->pNext = NULL; //Указываем, что изначально по следующему адресу пусто
-    temp->number = flight->number;//Записываем значение в структуру
+    // Создание структуры рейсы
+    Flight *temp = new Flight;
+    temp->pNext = NULL;
+    temp->number = flight->number;
     temp->fromName = flight->fromName;
     temp->toName = flight->toName;
     temp->aircraftNumber = flight->aircraftNumber;
 
-    if (Head!=NULL) //Если список не пуст
+    // Если список не пуст
+    if (Head!=NULL)
     {
-        temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
-        Tail -> pNext = temp; //Указываем адрес следующего за хвостом элемента
-        Tail = temp; //Меняем адрес хвоста
+        temp -> pPrev = Tail;
+        Tail -> pNext = temp;
+        Tail = temp;
         length++;
     }
     else //Если список пустой
     {
-        temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-        Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
+        temp -> pPrev = NULL;
+        Head = Tail = temp;
         length++;
     }
 }
 
-void FlightList::Show(QTextEdit* outTextEdit)
-{
-    QString str = "";
-    //ВЫВОДИМ СПИСОК С НАЧАЛА
-    Flight *temp = Head; //Временно указываем на адрес первого элемента
-    while (temp != NULL) //Пока не встретим пустое значение
-    {
-        str += temp->number + " " + temp->fromName + " " + temp->toName + " " + temp->aircraftNumber; //Выводим каждое считанное значение на экран
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
-    }
-    outTextEdit->setText(str);
-}
-
+// Запись списка в файл
 void FlightList::WriteFile()
 {
     QFile file(flightFilePath);
 
     if (file.open(QIODevice::WriteOnly))
     {
-        Flight *temp = Head; //Временно указываем на адрес первого элемента
+        Flight *temp = Head;
         QTextStream stream(&file);
         stream.setCodec(QTextCodec::codecForName("UTF-8"));
-        while (temp != NULL) //Пока не встретим пустое значение
+        while (temp != NULL)
         {
             stream << temp->number << " " << temp->fromName << " " << temp->toName << " " << temp->aircraftNumber + "\r\n";
-            qDebug() << temp->number + temp->fromName + temp->toName + temp->aircraftNumber;
             temp = temp->pNext;
         }
         file.close();
     }
 }
 
+// Вывод списка на экран
 void FlightList::ShowList(QListWidget *lFlight)
 {
-    Flight *temp = Head;
     lFlight->clear();
-    while (temp != NULL) //Пока не встретим пустое значение
+    Flight *temp = Head;
+    while (temp != NULL)
     {
         QString str = temp->number + " " + temp->fromName + " " + temp->toName + " " + temp->aircraftNumber;
         lFlight->addItem(str);
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
 }
 
+// Вывод списка на экран, соответсвующего заданным параметрам поиска
 void FlightList::ShowSearchList(QListWidget *Flights, Flight flight)
 {
     Flight *tmp = Head;
     Flights->clear();
-    while (tmp != NULL) // Пока не встретим пустое значение
+    while (tmp != NULL)
     {
         if (tmp->number.toLower().contains(flight.number.toLower()) &&
             tmp->fromName.toLower().contains(flight.fromName.toLower()) &&
@@ -166,71 +153,66 @@ void FlightList::ShowSearchList(QListWidget *Flights, Flight flight)
         {
             Flights->addItem(tmp->number + " " + tmp->fromName + " " + tmp->toName + " " + tmp->aircraftNumber);
         }
-        tmp = tmp->pNext; // Смена адреса на адрес следующего элемента
+        tmp = tmp->pNext;
     }
 }
 
-/*ФУНКЦИЯ УДАЛЕНИЯ КОНКРЕТНОГО ЭЛЕМЕНТА ДВУСВЯЗНОГО СПИСКА*/
+// Удаление элемента списка
 void FlightList::Del(QString flightStr)
 {
+    // Вычисление индекса удаляемого элемента
     int x = 1;
     QStringList tempList = flightStr.split(' ');
     Flight *tmp = Head;
-    while (tmp != NULL) // Пока не встретим пустое значение
+    while (tmp != NULL)
     {
         if (tmp->number == tempList[0] && tmp->fromName == tempList[1] && tmp->toName == tempList[2] && tmp->aircraftNumber == tempList[3])
         {
             break;
         }
         x++;
-        tmp = tmp->pNext; // Смена адреса на адрес следующего элемента
+        tmp = tmp->pNext;
     }
 
-    //Если удаляем первый элемент, то могут быть такие варианты
-    //В списке есть только первый, в списке есть несколько элементов
-    //Поэтому разбиваем логику выполнения
-    if ((x==1) and (Head->pNext))
-    { //Если удаляем первый, но есть и другие, то
-        Flight *temp=Head;	//Указываем, что нам нужно начало списка
-        Head=Head->pNext;	//Сдвигаем начало на следующий за началом элемент
-        Head->pPrev=NULL;	//Делаем так, чтоб предыдущий началу элемент был пустым
-        delete temp;		//Удаляем удаляемое начало
-        length--;		//Обязательно уменьшаем счетчик
-        return ;		//И выходим из функции
+    // Если удаляемый элемент первый и не единственный
+    if ((x == 1) && (Head->pNext))
+    {
+        Flight *temp = Head;
+        Head = Head->pNext;
+        Head->pPrev = NULL;
+        delete temp;
+        length--;
+        return ;
     }
-    else if ((x==1) and (Head==Tail))
-    { //Если удаляем первый, но в списке только 1 элемент
-        Head->pNext=NULL;	//обнуляем все что нужно
-        Head=NULL;
-        delete Head;		//Удаляем указатель на начало
-        length=0;		//Обязательно обозначаем, что в списке ноль элементов
-        return;			//и выходим из функции
+    // Если элемент первый и единственный
+    else if ((x == 1) and (Head == Tail))
+    {
+        Head->pNext = NULL;
+        Head = NULL;
+        delete Head;
+        length = 0;
+        return;
     }
 
-    //Также может быть, что удаляемый элемент является последним элементом списка
+    // Если элемент последний
     if (x == length)
     {
-        Flight *temp=Tail;	//Указываем, что нам нужен хвост
-        Tail=Tail->pPrev;	//Отодвигаем хвост немного назад
-        Tail->pNext=NULL;	//Обозначаем, что впереди за хвостом пусто
-        delete temp;	//Очищаем память от бывшего хвоста
-        length--;		//Обязательно уменьшаем счетчик элементов
-        return;		//И выходим из функции
+        Flight *temp = Tail;
+        Tail = Tail->pPrev;
+        Tail->pNext = NULL;
+        delete temp;
+        length--;
+        return;
     }
 
-    //Если же удаляемый элемент лежит где-то в середине списка, то тогда его можно удалить
-    Flight *temp=Head,*temp2; //temp-Удаляемый элемент, temp2 нужен, чтобы не потерять данные
+    // Если элемент в середине
+    Flight *temp = Head,*temp2;
 
-    for (int i=0;i<x-1;i++)
-        temp=temp->pNext;  //Идем к адресу удаляемого элемента
-    temp2=temp;	//Временно запоминаем адрес удаляемого элемента
-    temp2->pPrev->pNext=temp->pNext;	//Записываем данные, что следующий за перед сейчас удаляемым элементом - это следующий от удаляемого
-    temp2->pNext->pPrev=temp->pPrev; //а предыдущий для следующего - это предыдущий для удаляемого
-    delete temp; //теперь смело можно освободить память, удалив адрес на начало удаляемого элемента
-    length--; //Обязательно уменьшаем число элементов в списке.
-}
-
-int FlightList::getLength()
-{
-    return length;
+    for (int i = 0; i < x-1; i++)
+        temp = temp->pNext;
+    temp2 = temp;
+    temp2->pPrev->pNext = temp->pNext;
+    temp2->pNext->pPrev = temp->pPrev;
+    delete temp;
+    length--;
 }

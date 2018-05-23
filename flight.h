@@ -7,6 +7,8 @@
 #include "QTextEdit"
 #include "QListWidget"
 #include "airport.h"
+#include "QTextCodec"
+#include "QCoreApplication"
 
 struct Flight
 {
@@ -33,13 +35,10 @@ private:
 public:
     FlightList():Head(NULL),Tail(NULL){}; //Инициализируем адреса как пустые
     ~FlightList(); //Деструктор
-    void Show(QTextEdit *); //Функция отображения списка на экране
     void Add(Flight*); //Функция добавления элементов в список
     void WriteFile();
     void ReadFile();
     void ShowList(QListWidget*);
-    void Del(int);
-    int getLength();
     void SetPath();
     bool IsAvailable(Flight *tmp);
     void Del(QString flightStr);

@@ -1,17 +1,8 @@
 #include "aircraft.h"
-#include "iostream"
-#include "QFile"
-#include "QTextStream"
-#include "QListWidget"
-#include "airport.h"
-#include "QTextCodec"
-#include "QCoreApplication"
 
 void AircraftList::SetPath()
 {
-    aircraftFilePath = //"/Users/andreymakarov/Langs/Qt/build-Airport-Desktop_Qt_5_10_1_clang_64bit-Debug/aircrafts.txt";
-            QCoreApplication::applicationDirPath() + "//aircrafts.txt";
-    qDebug() << QCoreApplication::applicationDirPath();
+    aircraftFilePath = QCoreApplication::applicationDirPath() + "//aircrafts.txt";
 }
 
 void AircraftList::ReadFile()
@@ -25,117 +16,96 @@ void AircraftList::ReadFile()
             str = file.readLine();
             if (str != "")
             {
+                // Создание структуры судна
                 QStringList flightData = str.split(' ');
-                Aircraft *temp = new Aircraft; //Выделение памяти под новый элемент структуры
-                temp->pNext = NULL;  //Указываем, что изначально по следующему адресу пусто
-                temp->model = flightData.at(0);//Записываем значение в структуру
+                Aircraft *temp = new Aircraft;
+                temp->pNext = NULL;
+                temp->model = flightData.at(0);
                 QString tmpStr = flightData.at(1);
-                qDebug() << tmpStr;
                 tmpStr = tmpStr.remove(tmpStr.length() - 2,2);
                 temp->number = tmpStr;
-                qDebug() << temp->number;
-                if (Head!=NULL) //Если список не пуст
+                // Если список не пуст
+                if (Head!=NULL)
                 {
-                    temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
-                    Tail -> pNext = temp; //Указываем адрес следующего за хвостом элемента
-                    Tail = temp; //Меняем адрес хвоста
-                    length++;
+                    temp -> pPrev = Tail;
+                    Tail -> pNext = temp;
+                    Tail = temp;
                 }
-                else //Если список пустой
+                // Если список пуст
+                else
                 {
-                    temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-                    Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
-                    length++;
+                    temp -> pPrev = NULL;
+                    Head = Tail = temp;
                 }
+                length++;
             }
         }
         file.close();
     }
 }
 
-AircraftList::~AircraftList() //Деструктор
+// Деструктор
+AircraftList::~AircraftList()
 {
-    while (Head) //Пока по адресу на начало списка что-то есть
+    while (Head)
     {
-        Tail = Head->pNext; //Резервная копия адреса следующего звена списка
-        delete Head; //Очистка памяти от первого звена
-        Head = Tail; //Смена адреса начала на адрес следующего элемента
+        Tail = Head->pNext;
+        delete Head;
+        Head = Tail;
         length = 0;
     }
 }
 
-void AircraftList::Show(QTextEdit* outTextEdit)
-{
-//    //ВЫВОДИМ СПИСОК С КОНЦА
-//    //Временный указатель на адрес последнего элемента
-//    while (temp!=NULL) //Пока не встретится пустое значение
-//    {
-//        qDebug() << temp->name << " "; //Выводить значение на экран
-//        temp=temp->pPrev; //Указываем, что нужен адрес предыдущего элемента
-//    }
-//    cout<<"\n";
-
-    QString str = "";
-    //ВЫВОДИМ СПИСОК С НАЧАЛА
-    Aircraft *temp = Head; //Временно указываем на адрес первого элемента
-    while (temp != NULL) //Пока не встретим пустое значение
-    {
-        str += temp->model + " " + temp->number; //Выводим каждое считанное значение на экран
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
-    }
-    outTextEdit->setText(str);
-}
-
+// Проверка наличия добавляемого элемента в списке
 bool AircraftList::IsAvailable(Aircraft *tmp)
 {
-    Aircraft *temp = Head; //Выделение памяти под новый элемент структуры
-
+    Aircraft *temp = Head;
     temp = Head;
-
-    while (temp != NULL) // Пока не встретим пустое значение
+    while (temp != NULL)
     {
-        if (temp->number == tmp->number + "\r\n")//Выводим каждое считанное значение на экран
+        if (temp->number == tmp->number)
         {
             return false;
         }
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
-
     return true;
 }
 
+// Добавление элемента в список
 void AircraftList::Add(Aircraft *tmp)
 {
-    Aircraft *temp = new Aircraft; //Выделение памяти под новый элемент структуры
-    temp->pNext = NULL; //Указываем, что изначально по следующему адресу пусто
-    temp->model = tmp->model;//Записываем значение в структуру
+    Aircraft *temp = new Aircraft;
+    temp->pNext = NULL;
+    temp->model = tmp->model;
     temp->number = tmp->number;
-
-    if (Head!=NULL) //Если список не пуст
+    // Если список не пуст
+    if (Head!=NULL)
     {
-        temp -> pPrev = Tail; //Указываем адрес на предыдущий элемент в соотв. поле
-        Tail -> pNext = temp; //Указываем адрес следующего за хвостом элемента
-        Tail = temp; //Меняем адрес хвоста
-        length++;
+        temp -> pPrev = Tail;
+        Tail -> pNext = temp;
+        Tail = temp;
     }
-    else //Если список пустой
+    // Если список пустой
+    else
     {
-        temp -> pPrev = NULL; //Предыдущий элемент указывает в пустоту
-        Head = Tail = temp; //Голова=Хвост=тот элемент, что сейчас добавили
-        length++;
+        temp -> pPrev = NULL;
+        Head = Tail = temp;
     }
+    length++;
 }
 
+// Запись списка в файл
 void AircraftList::WriteFile()
 {
     QFile file(aircraftFilePath);
 
     if (file.open(QIODevice::WriteOnly))
     {
-        Aircraft *temp = Head; //Временно указываем на адрес первого элемента
+        Aircraft *temp = Head;
         QTextStream stream(&file);
         stream.setCodec(QTextCodec::codecForName("UTF-8"));
-        while (temp != NULL) //Пока не встретим пустое значение
+        while (temp != NULL)
         {
             stream << temp->model << " " << temp->number + "\r\n";
             temp = temp->pNext;
@@ -144,101 +114,91 @@ void AircraftList::WriteFile()
     }
 }
 
+// Вывод списка на экран
 void AircraftList::ShowList(QListWidget *lAircraft)
 {
     Aircraft *temp = Head;
     lAircraft->clear();
-    while (temp != NULL) //Пока не встретим пустое значение
+    while (temp != NULL)
     {
         QString str = temp->model + " " + temp->number;
         lAircraft->addItem(str);
-        temp = temp->pNext; //Смена адреса на адрес следующего элемента
+        temp = temp->pNext;
     }
 }
 
-void AircraftList::Clear() //Деструктор
-{
-    while (Head) //Пока по адресу на начало списка что-то есть
-    {
-        Tail = Head->pNext; //Резервная копия адреса следующего звена списка
-        delete Head; //Очистка памяти от первого звена
-        Head = Tail; //Смена адреса начала на адрес следующего элемента
-        length = 0;
-    }
-}
-
+// Вывод списка на экран, соответсвующего заданным параметрам поиска
 void AircraftList::ShowSearchList(QListWidget *Aircrafts, Aircraft aircraft)
 {
     Aircraft *tmp = Head;
     Aircrafts->clear();
-    while (tmp != NULL) // Пока не встретим пустое значение
+    while (tmp != NULL)
     {
         if (tmp->model.toLower().contains(aircraft.model.toLower()) && tmp->number.toLower().contains(aircraft.number.toLower()))
         {
             Aircrafts->addItem(tmp->model + " " + tmp->number);
         }
-        tmp = tmp->pNext; // Смена адреса на адрес следующего элемента
+        tmp = tmp->pNext;
     }
 }
 
-/*ФУНКЦИЯ УДАЛЕНИЯ КОНКРЕТНОГО ЭЛЕМЕНТА ДВУСВЯЗНОГО СПИСКА*/
+// Удаление элемента из списка
 void AircraftList::Del(QString aircraftStr)
 {
+    // Вычисление индекса удаляемого элемента
     int x = 1;
     QStringList tempList = aircraftStr.split(' ');
     Aircraft *tmp = Head;
-    while (tmp != NULL) // Пока не встретим пустое значение
+    while (tmp != NULL)
     {
         if (tmp->model.contains(tempList[0]) && tmp->number.contains(tempList[1]))
         {
             break;
         }
         x++;
-        tmp = tmp->pNext; // Смена адреса на адрес следующего элемента
+        tmp = tmp->pNext;
     }
-    //Если удаляем первый элемент, то могут быть такие варианты
-    //В списке есть только первый, в списке есть несколько элементов
-    //Поэтому разбиваем логику выполнения
-    if ((x==1) and (Head->pNext)){ //Если удаляем первый, но есть и другие, то
-        Aircraft *temp=Head;	//Указываем, что нам нужно начало списка
-        Head=Head->pNext;	//Сдвигаем начало на следующий за началом элемент
-        Head->pPrev=NULL;	//Делаем так, чтоб предыдущий началу элемент был пустым
-        delete temp;		//Удаляем удаляемое начало
-        length--;		//Обязательно уменьшаем счетчик
-        return ;		//И выходим из функции
-    } else if ((x==1) and (Head==Tail)){ //Если удаляем первый, но в списке только 1 элемент
 
-        Head->pNext=NULL;	//обнуляем все что нужно
+    // Если элемент первый и не единственный
+    if ((x==1) and (Head->pNext))
+    {
+        Aircraft *temp=Head;
+        Head=Head->pNext;
+        Head->pPrev=NULL;
+        delete temp;
+        length--;
+        return ;
+    }
+    // Если элемент первый и единственный
+    else if ((x==1) and (Head==Tail))
+    {
+        Head->pNext=NULL;
         Head=NULL;
-        delete Head;		//Удаляем указатель на начало
-        length=0;		//Обязательно обозначаем, что в списке ноль элементов
-        return;			//и выходим из функции
+        delete Head;
+        length = 0;
+        return;
     }
 
-    //Также может быть, что удаляемый элемент является последним элементом списка
+    // Если элемент последний
     if (x == length)
     {
-        Aircraft *temp=Tail;	//Указываем, что нам нужен хвост
-        Tail=Tail->pPrev;	//Отодвигаем хвост немного назад
-        Tail->pNext=NULL;	//Обозначаем, что впереди за хвостом пусто
-        delete temp;	//Очищаем память от бывшего хвоста
-        length--;		//Обязательно уменьшаем счетчик элементов
-        return;		//И выходим из функции
+        Aircraft *temp=Tail;
+        Tail=Tail->pPrev;
+        Tail->pNext=NULL;
+        delete temp;
+        length--;
+        return;
     }
 
-    //Если же удаляемый элемент лежит где-то в середине списка, то тогда его можно удалить
-    Aircraft *temp=Head,*temp2; //temp-Удаляемый элемент, temp2 нужен, чтобы не потерять данные
-
-    for (int i=0;i<x-1;i++) temp=temp->pNext;  //Идем к адресу удаляемого элемента
-
-    temp2=temp;	//Временно запоминаем адрес удаляемого элемента
-    temp2->pPrev->pNext=temp->pNext;	//Записываем данные, что следующий за перед сейчас удаляемым элементом - это следующий от удаляемого
-    temp2->pNext->pPrev=temp->pPrev; //а предыдущий для следующего - это предыдущий для удаляемого
-    delete temp; //теперь смело можно освободить память, удалив адрес на начало удаляемого элемента
-    length--; //Обязательно уменьшаем число элементов в списке.
-}
-
-int AircraftList::getLength()
-{
-    return length;
+    // Если элемент находится в середине
+    Aircraft *temp=Head,*temp2;
+    for (int i = 0;i < x-1; i++)
+    {
+        temp=temp->pNext;
+    }
+    temp2=temp;
+    temp2->pPrev->pNext=temp->pNext;
+    temp2->pNext->pPrev=temp->pPrev;
+    delete temp;
+    length--;
 }

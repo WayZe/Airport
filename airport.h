@@ -5,6 +5,10 @@
 #include "QDebug"
 #include "QTextEdit"
 #include "QListWidget"
+#include "iostream"
+#include "QListWidget"
+#include "QTextCodec"
+#include "QCoreApplication"
 
 struct Airport
 {
@@ -27,14 +31,11 @@ private:
 public:
     AirportList():Head(NULL),Tail(NULL){}; //Инициализируем адреса как пустые
     ~AirportList(); //Деструктор
-    void Show(QTextEdit *); //Функция отображения списка на экране
     void Add(QString name); //Функция добавления элементов в список
     void WriteFile();
     void ReadFile();
-    void Clear();
     void Del(QString airportName);
     void ShowList(QListWidget*);
-    int getLength();
     void SetPath();
     bool IsAvailable(QString);
     void ShowSearchList(QListWidget *lAirport, QString airportName);

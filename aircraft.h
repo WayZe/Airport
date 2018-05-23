@@ -5,6 +5,12 @@
 #include "QTextEdit"
 #include "QListWidget"
 #include "airport.h"
+#include "iostream"
+#include "QFile"
+#include "QTextStream"
+#include "QListWidget"
+#include "QTextCodec"
+#include "QCoreApplication"
 
 struct Aircraft
 {
@@ -28,14 +34,11 @@ private:
 public:
     AircraftList():Head(NULL),Tail(NULL){}; //Инициализируем адреса как пустые
     ~AircraftList(); //Деструктор
-    void Show(QTextEdit *); //Функция отображения списка на экране
     void Add(Aircraft*); //Функция добавления элементов в список
     void WriteFile();
     void ReadFile();
     void ShowList(QListWidget*);
-    void Clear();
     void Del(QString aircraftStr);
-    int getLength();
     void SetPath();
     bool IsAvailable(Aircraft *);
     void ShowSearchList(QListWidget *Flights, Aircraft aircraft);
